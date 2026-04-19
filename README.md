@@ -144,3 +144,13 @@ Note: CPU inference has no batching benefit — latency scales linearly with con
 - `SUMMARY.md` — story of the best improvement and key insight
 - `improve/report.md` — full ablation, 10 real examples, exact config
 - `guardrails/README.md` — determinism testing notes
+
+
+## RESULTS
+<img width="1574" height="430" alt="image" src="https://github.com/user-attachments/assets/a26d481b-4091-435c-86db-1737301cf5bc" />
+<img width="1583" height="319" alt="image" src="https://github.com/user-attachments/assets/1e60f399-2a03-410a-982f-9177ae20d179" />
+<img width="1376" height="210" alt="image" src="https://github.com/user-attachments/assets/dc8caf25-f590-45d3-a45e-9fc4aa765f31" />
+<img width="1545" height="784" alt="image" src="https://github.com/user-attachments/assets/f7623665-fb63-42de-bc0a-3c5fcec25932" />
+
+
+
