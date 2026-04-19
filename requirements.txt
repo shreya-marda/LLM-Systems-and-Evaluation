@@ -5,8 +5,9 @@ torch
 requests
 httpx
 pandas
-numpy
 matplotlib
 jupyter
+lm-eval
+numpy
 tqdm
-scikit-learn
+sentence-transformers
