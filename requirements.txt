@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+transformers
+torch
+requests
+httpx
+pandas
+numpy
+matplotlib
+jupyter
+tqdm
+scikit-learn
