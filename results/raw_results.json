@@ -1,0 +1,2134 @@
+{
+  "run_id": "20260419T095359Z",
+  "base_url": "http://localhost:8000",
+  "limit": 10,
+  "tasks": [
+    "hellaswag",
+    "mmlu_abstract_algebra",
+    "custom_task"
+  ],
+  "summary": [
+    {
+      "task_name": "hellaswag",
+      "num_shots": 0,
+      "accuracy": 0.1
+    },
+    {
+      "task_name": "mmlu_abstract_algebra",
+      "num_shots": 0,
+      "accuracy": 0.2
+    },
+    {
+      "task_name": "custom_task",
+      "num_shots": 0,
+      "accuracy": 0.5
+    }
+  ],
+  "harness_results": {
+    "results": {
+      "hellaswag": {
+        "alias": "hellaswag",
+        "acc,none": 0.1,
+        "acc_stderr,none": 0.09999999999999999,
+        "acc_norm,none": 0.4,
+        "acc_norm_stderr,none": 0.16329931618554522
+      },
+      "mmlu_abstract_algebra": {
+        "alias": "abstract_algebra",
+        "acc,none": 0.2,
+        "acc_stderr,none": 0.13333333333333333
+      }
+    },
+    "group_subtasks": {
+      "hellaswag": [],
+      "mmlu_abstract_algebra": []
+    },
+    "configs": {
+      "hellaswag": {
+        "task": "hellaswag",
+        "tag": [
+          "multiple_choice"
+        ],
+        "dataset_path": "Rowan/hellaswag",
+        "training_split": "train",
+        "validation_split": "validation",
+        "process_docs": "def process_docs(dataset: datasets.Dataset) -> datasets.Dataset:\n    def _process_doc(doc):\n        ctx = doc[\"ctx_a\"] + \" \" + doc[\"ctx_b\"].capitalize()\n        out_doc = {\n            \"query\": preprocess(doc[\"activity_label\"] + \": \" + ctx),\n            \"choices\": [preprocess(ending) for ending in doc[\"endings\"]],\n            \"gold\": int(doc[\"label\"]),\n        }\n        return out_doc\n\n    return dataset.map(_process_doc)\n",
+        "doc_to_text": "{{query}}",
+        "doc_to_target": "{{label}}",
+        "unsafe_code": false,
+        "doc_to_choice": "choices",
+        "description": "",
+        "target_delimiter": " ",
+        "fewshot_delimiter": "\n\n",
+        "fewshot_config": {
+          "sampler": "default",
+          "split": null,
+          "process_docs": "<function process_docs at 0x0000024E1971AB60>",
+          "fewshot_indices": null,
+          "samples": null,
+          "doc_to_text": "{{query}}",
+          "doc_to_choice": "choices",
+          "doc_to_target": "{{label}}",
+          "gen_prefix": null,
+          "fewshot_delimiter": "\n\n",
+          "target_delimiter": " "
+        },
+        "num_fewshot": 0,
+        "metric_list": [
+          {
+            "metric": "acc",
+            "aggregation": "mean",
+            "higher_is_better": true
+          },
+          {
+            "metric": "acc_norm",
+            "aggregation": "mean",
+            "higher_is_better": true
+          }
+        ],
+        "output_type": "multiple_choice",
+        "repeats": 1,
+        "should_decontaminate": false,
+        "metadata": {
+          "version": 1.0
+        }
+      },
+      "mmlu_abstract_algebra": {
+        "task": "mmlu_abstract_algebra",
+        "task_alias": "abstract_algebra",
+        "tag": "mmlu_stem_tasks",
+        "dataset_path": "cais/mmlu",
+        "dataset_name": "abstract_algebra",
+        "test_split": "test",
+        "fewshot_split": "dev",
+        "doc_to_text": "{{question.strip()}}\nA. {{choices[0]}}\nB. {{choices[1]}}\nC. {{choices[2]}}\nD. {{choices[3]}}\nAnswer:",
+        "doc_to_target": "answer",
+        "unsafe_code": false,
+        "doc_to_choice": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "description": "The following are multiple choice questions (with answers) about abstract algebra.\n\n",
+        "target_delimiter": " ",
+        "fewshot_delimiter": "\n\n",
+        "fewshot_config": {
+          "sampler": "first_n",
+          "split": "dev",
+          "process_docs": null,
+          "fewshot_indices": null,
+          "samples": null,
+          "doc_to_text": "{{question.strip()}}\nA. {{choices[0]}}\nB. {{choices[1]}}\nC. {{choices[2]}}\nD. {{choices[3]}}\nAnswer:",
+          "doc_to_choice": [
+            "A",
+            "B",
+            "C",
+            "D"
+          ],
+          "doc_to_target": "answer",
+          "gen_prefix": null,
+          "fewshot_delimiter": "\n\n",
+          "target_delimiter": " "
+        },
+        "num_fewshot": 0,
+        "metric_list": [
+          {
+            "metric": "acc",
+            "aggregation": "mean",
+            "higher_is_better": true
+          }
+        ],
+        "output_type": "multiple_choice",
+        "repeats": 1,
+        "should_decontaminate": false,
+        "metadata": {
+          "version": 1.0
+        }
+      }
+    },
+    "versions": {
+      "hellaswag": 1.0,
+      "mmlu_abstract_algebra": 1.0
+    },
+    "n-shot": {
+      "hellaswag": 0,
+      "mmlu_abstract_algebra": 0
+    },
+    "higher_is_better": {
+      "hellaswag": {
+        "acc": true,
+        "acc_norm": true
+      },
+      "mmlu_abstract_algebra": {
+        "acc": true
+      }
+    },
+    "n-samples": {
+      "mmlu_abstract_algebra": {
+        "original": 100,
+        "effective": 10
+      },
+      "hellaswag": {
+        "original": 10042,
+        "effective": 10
+      }
+    },
+    "samples": {
+      "mmlu_abstract_algebra": [
+        {
+          "doc_id": 0,
+          "doc": {
+            "question": "Find the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.",
+            "subject": "abstract_algebra",
+            "choices": [
+              "0",
+              "4",
+              "2",
+              "6"
+            ],
+            "answer": 1
+          },
+          "target": 1,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the degree for the given field extension Q(sqrt(2), sqrt(3), sqrt(18)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "6cd9c6502447a6f35e13e2e94ad6a1ba2ac5672b02acd62d3f1ad2829be63827",
+          "prompt_hash": "04ebc0806ad169c848f7078af1359da6f9f2c07f662e9f3cea9a94c7d54cbc7d",
+          "target_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+          "acc": 0.0
+        },
+        {
+          "doc_id": 1,
+          "doc": {
+            "question": "Let p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of <p> in S_5.",
+            "subject": "abstract_algebra",
+            "choices": [
+              "8",
+              "2",
+              "24",
+              "120"
+            ],
+            "answer": 2
+          },
+          "target": 2,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nLet p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of <p> in S_5.\nA. 8\nB. 2\nC. 24\nD. 120\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nLet p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of <p> in S_5.\nA. 8\nB. 2\nC. 24\nD. 120\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nLet p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of <p> in S_5.\nA. 8\nB. 2\nC. 24\nD. 120\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nLet p = (1, 2, 5, 4)(2, 3) in S_5 . Find the index of <p> in S_5.\nA. 8\nB. 2\nC. 24\nD. 120\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "40bb7923cd6211453bfd4b386132b066b28be621a8d0ccd35a23a38568c09c7d",
+          "prompt_hash": "eb75456e032f0af8c050c8bd8eb2710d294f8b7e4339b003e3a34e271d282d9a",
+          "target_hash": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+          "acc": 0.0
+        },
+        {
+          "doc_id": 2,
+          "doc": {
+            "question": "Find all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^5 + 3x^3 + x^2 + 2x in Z_5",
+            "subject": "abstract_algebra",
+            "choices": [
+              "0",
+              "1",
+              "0,1",
+              "0,4"
+            ],
+            "answer": 3
+          },
+          "target": 3,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^5 + 3x^3 + x^2 + 2x in Z_5\nA. 0\nB. 1\nC. 0,1\nD. 0,4\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^5 + 3x^3 + x^2 + 2x in Z_5\nA. 0\nB. 1\nC. 0,1\nD. 0,4\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^5 + 3x^3 + x^2 + 2x in Z_5\nA. 0\nB. 1\nC. 0,1\nD. 0,4\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^5 + 3x^3 + x^2 + 2x in Z_5\nA. 0\nB. 1\nC. 0,1\nD. 0,4\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "155ab0f225cc66dcbd21b4e77bc03712f985f9cedb23dd02bf92c6f7fc4c1a85",
+          "prompt_hash": "49245fb1c71accbd002eed2c9abe42b2fc0eafc658b53304a2358f5905f48682",
+          "target_hash": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+          "acc": 0.0
+        },
+        {
+          "doc_id": 3,
+          "doc": {
+            "question": "Statement 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.",
+            "subject": "abstract_algebra",
+            "choices": [
+              "True, True",
+              "False, False",
+              "True, False",
+              "False, True"
+            ],
+            "answer": 1
+          },
+          "target": 1,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | A factor group of a non-Abelian group is non-Abelian. Statement 2 | If K is a normal subgroup of H and H is a normal subgroup of G, then K is a normal subgroup of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -3.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "507f70f31a83f1eaa02654118ef13a49c0ed0e20461c3f935783dea3308fb831",
+          "prompt_hash": "dbb7897bfb30fa6f2d96be6e62c6c44f5ca0793f2ee8c7a33e47b95622b04e81",
+          "target_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+          "acc": 0.0
+        },
+        {
+          "doc_id": 4,
+          "doc": {
+            "question": "Find the product of the given polynomials in the given polynomial ring. f(x) = 4x - 5, g(x) = 2x^2 - 4x + 2 in Z_8[x].",
+            "subject": "abstract_algebra",
+            "choices": [
+              "2x^2 + 5",
+              "6x^2 + 4x + 6",
+              "0",
+              "x^2 + 1"
+            ],
+            "answer": 1
+          },
+          "target": 1,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the product of the given polynomials in the given polynomial ring. f(x) = 4x - 5, g(x) = 2x^2 - 4x + 2 in Z_8[x].\nA. 2x^2 + 5\nB. 6x^2 + 4x + 6\nC. 0\nD. x^2 + 1\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the product of the given polynomials in the given polynomial ring. f(x) = 4x - 5, g(x) = 2x^2 - 4x + 2 in Z_8[x].\nA. 2x^2 + 5\nB. 6x^2 + 4x + 6\nC. 0\nD. x^2 + 1\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the product of the given polynomials in the given polynomial ring. f(x) = 4x - 5, g(x) = 2x^2 - 4x + 2 in Z_8[x].\nA. 2x^2 + 5\nB. 6x^2 + 4x + 6\nC. 0\nD. x^2 + 1\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the product of the given polynomials in the given polynomial ring. f(x) = 4x - 5, g(x) = 2x^2 - 4x + 2 in Z_8[x].\nA. 2x^2 + 5\nB. 6x^2 + 4x + 6\nC. 0\nD. x^2 + 1\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "6052136314d811e87b28615c67e27b8bd4c0d96c342921da4d866866b90d4fe2",
+          "prompt_hash": "5536e9f73a1a014e7bcbfe68e122d061cdd352faf5dbda3a453ed6cc644f8072",
+          "target_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+          "acc": 0.0
+        },
+        {
+          "doc_id": 5,
+          "doc": {
+            "question": "Statement 1 | If a group has an element of order 15 it must have at least 8 elements of order 15. Statement 2 | If a group has more than 8 elements of order 15, it must have at least 16 elements of order 15.",
+            "subject": "abstract_algebra",
+            "choices": [
+              "True, True",
+              "False, False",
+              "True, False",
+              "False, True"
+            ],
+            "answer": 0
+          },
+          "target": 0,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | If a group has an element of order 15 it must have at least 8 elements of order 15. Statement 2 | If a group has more than 8 elements of order 15, it must have at least 16 elements of order 15.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | If a group has an element of order 15 it must have at least 8 elements of order 15. Statement 2 | If a group has more than 8 elements of order 15, it must have at least 16 elements of order 15.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | If a group has an element of order 15 it must have at least 8 elements of order 15. Statement 2 | If a group has more than 8 elements of order 15, it must have at least 16 elements of order 15.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | If a group has an element of order 15 it must have at least 8 elements of order 15. Statement 2 | If a group has more than 8 elements of order 15, it must have at least 16 elements of order 15.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "be8f4150e4b8e4319b85b4f237d903a119ef0ec3dabcb275994de0368331b078",
+          "prompt_hash": "46ff206fc58adc9e059d70422c378729f5852294767179244683cfdf634a04dd",
+          "target_hash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+          "acc": 1.0
+        },
+        {
+          "doc_id": 6,
+          "doc": {
+            "question": "Statement 1 | Every homomorphic image of a group G is isomorphic to a factor group of G. Statement 2 | The homomorphic images of a group G are the same (up to isomorphism) as the factor groups of G.",
+            "subject": "abstract_algebra",
+            "choices": [
+              "True, True",
+              "False, False",
+              "True, False",
+              "False, True"
+            ],
+            "answer": 0
+          },
+          "target": 0,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | Every homomorphic image of a group G is isomorphic to a factor group of G. Statement 2 | The homomorphic images of a group G are the same (up to isomorphism) as the factor groups of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | Every homomorphic image of a group G is isomorphic to a factor group of G. Statement 2 | The homomorphic images of a group G are the same (up to isomorphism) as the factor groups of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | Every homomorphic image of a group G is isomorphic to a factor group of G. Statement 2 | The homomorphic images of a group G are the same (up to isomorphism) as the factor groups of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | Every homomorphic image of a group G is isomorphic to a factor group of G. Statement 2 | The homomorphic images of a group G are the same (up to isomorphism) as the factor groups of G.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "39b34d0098cae9fc798f7f81274f943bd61cefafff337c5d24b8cd723f91646d",
+          "prompt_hash": "a05e12c78f57fb20ed31fbf09ad9c272f1c76b2436a7cfd08ffaac9a010dfef5",
+          "target_hash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+          "acc": 1.0
+        },
+        {
+          "doc_id": 7,
+          "doc": {
+            "question": "Statement 1 | A ring homomorphism is one to one if and only if the kernel is {0}. Statement 2 | Q is an ideal in R.",
+            "subject": "abstract_algebra",
+            "choices": [
+              "True, True",
+              "False, False",
+              "True, False",
+              "False, True"
+            ],
+            "answer": 3
+          },
+          "target": 3,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | A ring homomorphism is one to one if and only if the kernel is {0}. Statement 2 | Q is an ideal in R.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | A ring homomorphism is one to one if and only if the kernel is {0}. Statement 2 | Q is an ideal in R.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | A ring homomorphism is one to one if and only if the kernel is {0}. Statement 2 | Q is an ideal in R.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nStatement 1 | A ring homomorphism is one to one if and only if the kernel is {0}. Statement 2 | Q is an ideal in R.\nA. True, True\nB. False, False\nC. True, False\nD. False, True\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -5.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -5.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "ddff9e02dc50b8865182e056c485022b810a00190354d4b26c49bd5f9f242fa2",
+          "prompt_hash": "190288bfd1a844ccab657a22c2fe5559654e0d079e12fa0de6a97536ce6e39b1",
+          "target_hash": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+          "acc": 0.0
+        },
+        {
+          "doc_id": 8,
+          "doc": {
+            "question": "Find the degree for the given field extension Q(sqrt(2) + sqrt(3)) over Q.",
+            "subject": "abstract_algebra",
+            "choices": [
+              "0",
+              "4",
+              "2",
+              "6"
+            ],
+            "answer": 1
+          },
+          "target": 1,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the degree for the given field extension Q(sqrt(2) + sqrt(3)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the degree for the given field extension Q(sqrt(2) + sqrt(3)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the degree for the given field extension Q(sqrt(2) + sqrt(3)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind the degree for the given field extension Q(sqrt(2) + sqrt(3)) over Q.\nA. 0\nB. 4\nC. 2\nD. 6\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "36856655370e2c5512bcb581f34f0b2d04dd32047dd24d6728c2237aaa5f2341",
+          "prompt_hash": "005b3e840f0a6cab27eb0f3f42318637dd1dd4d807a7a82401bc1812348464d0",
+          "target_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+          "acc": 0.0
+        },
+        {
+          "doc_id": 9,
+          "doc": {
+            "question": "Find all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^3 + 2x + 2 in Z_7",
+            "subject": "abstract_algebra",
+            "choices": [
+              "1",
+              "2",
+              "2,3",
+              "6"
+            ],
+            "answer": 2
+          },
+          "target": 2,
+          "arguments": [
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^3 + 2x + 2 in Z_7\nA. 1\nB. 2\nC. 2,3\nD. 6\nAnswer:",
+              " A"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^3 + 2x + 2 in Z_7\nA. 1\nB. 2\nC. 2,3\nD. 6\nAnswer:",
+              " B"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^3 + 2x + 2 in Z_7\nA. 1\nB. 2\nC. 2,3\nD. 6\nAnswer:",
+              " C"
+            ],
+            [
+              "The following are multiple choice questions (with answers) about abstract algebra.\n\nFind all zeros in the indicated finite field of the given polynomial with coefficients in that field. x^3 + 2x + 2 in Z_7\nA. 1\nB. 2\nC. 2,3\nD. 6\nAnswer:",
+              " D"
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ],
+            [
+              -1.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc"
+          ],
+          "doc_hash": "8ca51329d549d555ca670610b680c8f252acbc485473ad37db4fd8d1ec20089e",
+          "prompt_hash": "1dd9fc8bfea582719d817559dea807a6380fd5a3b7420fc1187281126247cebc",
+          "target_hash": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+          "acc": 0.0
+        }
+      ],
+      "hellaswag": [
+        {
+          "doc_id": 0,
+          "doc": {
+            "ind": 24,
+            "activity_label": "Roof shingle removal",
+            "ctx_a": "A man is sitting on a roof.",
+            "ctx_b": "he",
+            "ctx": "A man is sitting on a roof. he",
+            "endings": [
+              "is using wrap to wrap a pair of skis.",
+              "is ripping level tiles off.",
+              "is holding a rubik's cube.",
+              "starts pulling up roofing on a roof."
+            ],
+            "source_id": "activitynet~v_-JhWjGDPHMY",
+            "split": "val",
+            "split_type": "indomain",
+            "label": "3",
+            "query": "Roof shingle removal: A man is sitting on a roof. He",
+            "choices": [
+              "is using wrap to wrap a pair of skis.",
+              "is ripping level tiles off.",
+              "is holding a rubik's cube.",
+              "starts pulling up roofing on a roof."
+            ],
+            "gold": 3
+          },
+          "target": 3,
+          "arguments": [
+            [
+              "Roof shingle removal: A man is sitting on a roof. He",
+              " is using wrap to wrap a pair of skis."
+            ],
+            [
+              "Roof shingle removal: A man is sitting on a roof. He",
+              " is ripping level tiles off."
+            ],
+            [
+              "Roof shingle removal: A man is sitting on a roof. He",
+              " is holding a rubik's cube."
+            ],
+            [
+              "Roof shingle removal: A man is sitting on a roof. He",
+              " starts pulling up roofing on a roof."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -3.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "5fa398b50d156bdf77b474f3b43a03352e9a46bddfc7bb62e1038f7b4f12bbd1",
+          "prompt_hash": "e63087504993cd36ee0de69dc9b1ab25ac86550530f0b38fd17b14d3c4cf4f38",
+          "target_hash": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+          "acc": 0.0,
+          "acc_norm": 0.0
+        },
+        {
+          "doc_id": 1,
+          "doc": {
+            "ind": 92,
+            "activity_label": "Clean and jerk",
+            "ctx_a": "A lady walks to a barbell. She bends down and grabs the pole.",
+            "ctx_b": "the lady",
+            "ctx": "A lady walks to a barbell. She bends down and grabs the pole. the lady",
+            "endings": [
+              "swings and lands in her arms.",
+              "pulls the barbell forward.",
+              "pulls a rope attached to the barbell.",
+              "stands and lifts the weight over her head."
+            ],
+            "source_id": "activitynet~v_-lJS58hyo1c",
+            "split": "val",
+            "split_type": "zeroshot",
+            "label": "3",
+            "query": "Clean and jerk: A lady walks to a barbell. She bends down and grabs the pole. The lady",
+            "choices": [
+              "swings and lands in her arms.",
+              "pulls the barbell forward.",
+              "pulls a rope attached to the barbell.",
+              "stands and lifts the weight over her head."
+            ],
+            "gold": 3
+          },
+          "target": 3,
+          "arguments": [
+            [
+              "Clean and jerk: A lady walks to a barbell. She bends down and grabs the pole. The lady",
+              " swings and lands in her arms."
+            ],
+            [
+              "Clean and jerk: A lady walks to a barbell. She bends down and grabs the pole. The lady",
+              " pulls the barbell forward."
+            ],
+            [
+              "Clean and jerk: A lady walks to a barbell. She bends down and grabs the pole. The lady",
+              " pulls a rope attached to the barbell."
+            ],
+            [
+              "Clean and jerk: A lady walks to a barbell. She bends down and grabs the pole. The lady",
+              " stands and lifts the weight over her head."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "08296d87a2d1cb270a714773cb78d37f02f82661a082462fa53b437dfa0e3a5e",
+          "prompt_hash": "3b9f9052a08d02c8e1569c3193b21da7a40a88d23a03431937a57658ccfbd8e3",
+          "target_hash": "4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce",
+          "acc": 0.0,
+          "acc_norm": 1.0
+        },
+        {
+          "doc_id": 2,
+          "doc": {
+            "ind": 106,
+            "activity_label": "Canoeing",
+            "ctx_a": "Two women in a child are shown in a canoe while a man pulls the canoe while standing in the water, with other individuals visible in the background.",
+            "ctx_b": "the child and a different man",
+            "ctx": "Two women in a child are shown in a canoe while a man pulls the canoe while standing in the water, with other individuals visible in the background. the child and a different man",
+            "endings": [
+              "are then shown paddling down a river in a boat while a woman talks.",
+              "are driving the canoe, they go down the river flowing side to side.",
+              "sit in a canoe while the man paddles.",
+              "walking go down the rapids, while the man in his helicopter almost falls and goes out of canoehood."
+            ],
+            "source_id": "activitynet~v_-xQvJmC2jhk",
+            "split": "val",
+            "split_type": "indomain",
+            "label": "2",
+            "query": "Canoeing: Two women in a child are shown in a canoe while a man pulls the canoe while standing in the water, with other individuals visible in the background. The child and a different man",
+            "choices": [
+              "are then shown paddling down a river in a boat while a woman talks.",
+              "are driving the canoe, they go down the river flowing side to side.",
+              "sit in a canoe while the man paddles.",
+              "walking go down the rapids, while the man in his helicopter almost falls and goes out of canoehood."
+            ],
+            "gold": 2
+          },
+          "target": 2,
+          "arguments": [
+            [
+              "Canoeing: Two women in a child are shown in a canoe while a man pulls the canoe while standing in the water, with other individuals visible in the background. The child and a different man",
+              " are then shown paddling down a river in a boat while a woman talks."
+            ],
+            [
+              "Canoeing: Two women in a child are shown in a canoe while a man pulls the canoe while standing in the water, with other individuals visible in the background. The child and a different man",
+              " are driving the canoe, they go down the river flowing side to side."
+            ],
+            [
+              "Canoeing: Two women in a child are shown in a canoe while a man pulls the canoe while standing in the water, with other individuals visible in the background. The child and a different man",
+              " sit in a canoe while the man paddles."
+            ],
+            [
+              "Canoeing: Two women in a child are shown in a canoe while a man pulls the canoe while standing in the water, with other individuals visible in the background. The child and a different man",
+              " walking go down the rapids, while the man in his helicopter almost falls and goes out of canoehood."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "14dc9b1c3f03ef369e0e9976562d362f58e37cadb9bebf25ee5dabdc3ff6ad7d",
+          "prompt_hash": "fe85f7beb5549c53ae662741c373d9e854aa42fc4c070ba4503a0ded863f2dfe",
+          "target_hash": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+          "acc": 0.0,
+          "acc_norm": 0.0
+        },
+        {
+          "doc_id": 3,
+          "doc": {
+            "ind": 114,
+            "activity_label": "High jump",
+            "ctx_a": "A boy is running down a track.",
+            "ctx_b": "the boy",
+            "ctx": "A boy is running down a track. the boy",
+            "endings": [
+              "runs into a car.",
+              "gets in a mat.",
+              "lifts his body above the height of a pole.",
+              "stands on his hands and springs."
+            ],
+            "source_id": "activitynet~v_-zHX3Gdx6I4",
+            "split": "val",
+            "split_type": "zeroshot",
+            "label": "2",
+            "query": "High jump: A boy is running down a track. The boy",
+            "choices": [
+              "runs into a car.",
+              "gets in a mat.",
+              "lifts his body above the height of a pole.",
+              "stands on his hands and springs."
+            ],
+            "gold": 2
+          },
+          "target": 2,
+          "arguments": [
+            [
+              "High jump: A boy is running down a track. The boy",
+              " runs into a car."
+            ],
+            [
+              "High jump: A boy is running down a track. The boy",
+              " gets in a mat."
+            ],
+            [
+              "High jump: A boy is running down a track. The boy",
+              " lifts his body above the height of a pole."
+            ],
+            [
+              "High jump: A boy is running down a track. The boy",
+              " stands on his hands and springs."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "7a5346b1d9309aa52799e598a5ccbff33ccd8c18c1d1056da412389ea5bd9e8b",
+          "prompt_hash": "a2df73697ab4570dea4ab99211b81e98edfa0a5615a9b83a38f48341c0734e80",
+          "target_hash": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+          "acc": 0.0,
+          "acc_norm": 1.0
+        },
+        {
+          "doc_id": 4,
+          "doc": {
+            "ind": 116,
+            "activity_label": "High jump",
+            "ctx_a": "The boy lifts his body above the height of a pole. The boy lands on his back on to a red mat.",
+            "ctx_b": "the boy",
+            "ctx": "The boy lifts his body above the height of a pole. The boy lands on his back on to a red mat. the boy",
+            "endings": [
+              "turns his body around on the mat.",
+              "gets up from the mat.",
+              "continues to lift his body over the pole.",
+              "wiggles out of the mat."
+            ],
+            "source_id": "activitynet~v_-zHX3Gdx6I4",
+            "split": "val",
+            "split_type": "zeroshot",
+            "label": "1",
+            "query": "High jump: The boy lifts his body above the height of a pole. The boy lands on his back on to a red mat. The boy",
+            "choices": [
+              "turns his body around on the mat.",
+              "gets up from the mat.",
+              "continues to lift his body over the pole.",
+              "wiggles out of the mat."
+            ],
+            "gold": 1
+          },
+          "target": 1,
+          "arguments": [
+            [
+              "High jump: The boy lifts his body above the height of a pole. The boy lands on his back on to a red mat. The boy",
+              " turns his body around on the mat."
+            ],
+            [
+              "High jump: The boy lifts his body above the height of a pole. The boy lands on his back on to a red mat. The boy",
+              " gets up from the mat."
+            ],
+            [
+              "High jump: The boy lifts his body above the height of a pole. The boy lands on his back on to a red mat. The boy",
+              " continues to lift his body over the pole."
+            ],
+            [
+              "High jump: The boy lifts his body above the height of a pole. The boy lands on his back on to a red mat. The boy",
+              " wiggles out of the mat."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "0ea20e56c00cb5efbd1db09b523ddfb3dca721b1e17d740270d39d0296ee621c",
+          "prompt_hash": "8a1432f2aa0f0a07e3c133ac5c43561fc3849ada1e1c45066a6f13aa4ccac951",
+          "target_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+          "acc": 0.0,
+          "acc_norm": 0.0
+        },
+        {
+          "doc_id": 5,
+          "doc": {
+            "ind": 117,
+            "activity_label": "High jump",
+            "ctx_a": "The boy lands on his back on to a red mat. The boy gets up from the mat.",
+            "ctx_b": "the boy",
+            "ctx": "The boy lands on his back on to a red mat. The boy gets up from the mat. the boy",
+            "endings": [
+              "starts doing spins.",
+              "celebrates by clapping and flexing both arms.",
+              "is dancing on the mat.",
+              "does jump jacks on his stick."
+            ],
+            "source_id": "activitynet~v_-zHX3Gdx6I4",
+            "split": "val",
+            "split_type": "zeroshot",
+            "label": "1",
+            "query": "High jump: The boy lands on his back on to a red mat. The boy gets up from the mat. The boy",
+            "choices": [
+              "starts doing spins.",
+              "celebrates by clapping and flexing both arms.",
+              "is dancing on the mat.",
+              "does jump jacks on his stick."
+            ],
+            "gold": 1
+          },
+          "target": 1,
+          "arguments": [
+            [
+              "High jump: The boy lands on his back on to a red mat. The boy gets up from the mat. The boy",
+              " starts doing spins."
+            ],
+            [
+              "High jump: The boy lands on his back on to a red mat. The boy gets up from the mat. The boy",
+              " celebrates by clapping and flexing both arms."
+            ],
+            [
+              "High jump: The boy lands on his back on to a red mat. The boy gets up from the mat. The boy",
+              " is dancing on the mat."
+            ],
+            [
+              "High jump: The boy lands on his back on to a red mat. The boy gets up from the mat. The boy",
+              " does jump jacks on his stick."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "c10764353478517efdd4ff86e98cae2843877ae3bff5e1af117d05e581340b96",
+          "prompt_hash": "b31af94ae9da048b8880edf3975c89966e1b43e56bbd9411fcb16783729c235c",
+          "target_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+          "acc": 0.0,
+          "acc_norm": 1.0
+        },
+        {
+          "doc_id": 6,
+          "doc": {
+            "ind": 149,
+            "activity_label": "Playing harmonica",
+            "ctx_a": "A man is standing in front of a camera. He starts playing a harmonica for the camera.",
+            "ctx_b": "he",
+            "ctx": "A man is standing in front of a camera. He starts playing a harmonica for the camera. he",
+            "endings": [
+              "begins to play the harmonica with his body while looking at the camera.",
+              "seems to be singing while playing the harmonica.",
+              "rocks back and forth to the music as he goes.",
+              "painted a fence in front of the camera."
+            ],
+            "source_id": "activitynet~v_0RUMAGGab1k",
+            "split": "val",
+            "split_type": "zeroshot",
+            "label": "2",
+            "query": "Playing harmonica: A man is standing in front of a camera. He starts playing a harmonica for the camera. He",
+            "choices": [
+              "begins to play the harmonica with his body while looking at the camera.",
+              "seems to be singing while playing the harmonica.",
+              "rocks back and forth to the music as he goes.",
+              "painted a fence in front of the camera."
+            ],
+            "gold": 2
+          },
+          "target": 2,
+          "arguments": [
+            [
+              "Playing harmonica: A man is standing in front of a camera. He starts playing a harmonica for the camera. He",
+              " begins to play the harmonica with his body while looking at the camera."
+            ],
+            [
+              "Playing harmonica: A man is standing in front of a camera. He starts playing a harmonica for the camera. He",
+              " seems to be singing while playing the harmonica."
+            ],
+            [
+              "Playing harmonica: A man is standing in front of a camera. He starts playing a harmonica for the camera. He",
+              " rocks back and forth to the music as he goes."
+            ],
+            [
+              "Playing harmonica: A man is standing in front of a camera. He starts playing a harmonica for the camera. He",
+              " painted a fence in front of the camera."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ],
+            [
+              [
+                -3.0,
+                true
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -3.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ],
+            [
+              -3.0,
+              true
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "cf8a9b3f0c6672e4f6502cc4bb4add452f8ea8a996a72179a69f28d2e2218d27",
+          "prompt_hash": "2125cc80f3a2322cc77c38dce4e23d737b484e2170b182f8709e3832f548cc6d",
+          "target_hash": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35",
+          "acc": 0.0,
+          "acc_norm": 0.0
+        },
+        {
+          "doc_id": 7,
+          "doc": {
+            "ind": 170,
+            "activity_label": "Sumo",
+            "ctx_a": "A cartoon animation video is shown with people wandering around and rockets being shot.",
+            "ctx_b": "two men",
+            "ctx": "A cartoon animation video is shown with people wandering around and rockets being shot. two men",
+            "endings": [
+              "fight robots of evil and ends with a to be continued.",
+              "are then shown in closeups shooting a shot put.",
+              "push a child in a speedboat in the water.",
+              "look in the cameraman's eye and smile."
+            ],
+            "source_id": "activitynet~v_0WVkoTBmhA0",
+            "split": "val",
+            "split_type": "indomain",
+            "label": "0",
+            "query": "Sumo: A cartoon animation video is shown with people wandering around and rockets being shot. Two men",
+            "choices": [
+              "fight robots of evil and ends with a to be continued.",
+              "are then shown in closeups shooting a shot put.",
+              "push a child in a speedboat in the water.",
+              "look in the cameraman's eye and smile."
+            ],
+            "gold": 0
+          },
+          "target": 0,
+          "arguments": [
+            [
+              "Sumo: A cartoon animation video is shown with people wandering around and rockets being shot. Two men",
+              " fight robots of evil and ends with a to be continued."
+            ],
+            [
+              "Sumo: A cartoon animation video is shown with people wandering around and rockets being shot. Two men",
+              " are then shown in closeups shooting a shot put."
+            ],
+            [
+              "Sumo: A cartoon animation video is shown with people wandering around and rockets being shot. Two men",
+              " push a child in a speedboat in the water."
+            ],
+            [
+              "Sumo: A cartoon animation video is shown with people wandering around and rockets being shot. Two men",
+              " look in the cameraman's eye and smile."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                false
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -4.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                false
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              false
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -4.0,
+              true
+            ],
+            [
+              -1.0,
+              false
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "484959f4cb60c490dfc7ae2431a4fc70b81f0784109e5626ff465f3ce22430b6",
+          "prompt_hash": "18d0f3b52cea323e10cb807c98f1d19817a68167d4364461b1f8c7a4b4b57a5d",
+          "target_hash": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9",
+          "acc": 1.0,
+          "acc_norm": 1.0
+        },
+        {
+          "doc_id": 8,
+          "doc": {
+            "ind": 180,
+            "activity_label": "Sharpening knives",
+            "ctx_a": "A man is holding a pocket knife while sitting on some rocks in the wilderness.",
+            "ctx_b": "then he",
+            "ctx": "A man is holding a pocket knife while sitting on some rocks in the wilderness. then he",
+            "endings": [
+              "opens a can of oil put oil on the knife, and puts oil on a knife and press it through a can filled with oil then cuts several pieces from the sandwiches.",
+              "takes a small stone from the flowing river and smashes it on another stone.",
+              "uses the knife to shave his leg.",
+              "sand the rocks and tops them by using strong pressure."
+            ],
+            "source_id": "activitynet~v_0bosp4-pyTM",
+            "split": "val",
+            "split_type": "zeroshot",
+            "label": "1",
+            "query": "Sharpening knives: A man is holding a pocket knife while sitting on some rocks in the wilderness. Then he",
+            "choices": [
+              "opens a can of oil put oil on the knife, and puts oil on a knife and press it through a can filled with oil then cuts several pieces from the sandwiches.",
+              "takes a small stone from the flowing river and smashes it on another stone.",
+              "uses the knife to shave his leg.",
+              "sand the rocks and tops them by using strong pressure."
+            ],
+            "gold": 1
+          },
+          "target": 1,
+          "arguments": [
+            [
+              "Sharpening knives: A man is holding a pocket knife while sitting on some rocks in the wilderness. Then he",
+              " opens a can of oil put oil on the knife, and puts oil on a knife and press it through a can filled with oil then cuts several pieces from the sandwiches."
+            ],
+            [
+              "Sharpening knives: A man is holding a pocket knife while sitting on some rocks in the wilderness. Then he",
+              " takes a small stone from the flowing river and smashes it on another stone."
+            ],
+            [
+              "Sharpening knives: A man is holding a pocket knife while sitting on some rocks in the wilderness. Then he",
+              " uses the knife to shave his leg."
+            ],
+            [
+              "Sharpening knives: A man is holding a pocket knife while sitting on some rocks in the wilderness. Then he",
+              " sand the rocks and tops them by using strong pressure."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -1.0,
+                false
+              ]
+            ],
+            [
+              [
+                -1.0,
+                false
+              ]
+            ],
+            [
+              [
+                -1.0,
+                false
+              ]
+            ],
+            [
+              [
+                -1.0,
+                false
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -1.0,
+              false
+            ],
+            [
+              -1.0,
+              false
+            ],
+            [
+              -1.0,
+              false
+            ],
+            [
+              -1.0,
+              false
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "0126fc20b6dd7239b4da25fc7fa0ed5c3ccfc4c6060cbf91aefc99002f10f791",
+          "prompt_hash": "45e62663742a4c7c3befabde85ab526edc2d9b60e460a34f2eaa3292c9d41109",
+          "target_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+          "acc": 0.0,
+          "acc_norm": 0.0
+        },
+        {
+          "doc_id": 9,
+          "doc": {
+            "ind": 182,
+            "activity_label": "Sharpening knives",
+            "ctx_a": "Then he takes a small stone from the flowing river and smashes it on another stone. He starts to crush the small stone to smaller pieces.",
+            "ctx_b": "he",
+            "ctx": "Then he takes a small stone from the flowing river and smashes it on another stone. He starts to crush the small stone to smaller pieces. he",
+            "endings": [
+              "cuts the center stone in half and blow it on to make it bigger.",
+              "grind it hard to make the pieces smaller.",
+              "eventually brings it back into view and adds it to the smaller ones to make a small triangular shaped piece.",
+              "starts to party with them and throw the pieces by hand while they celebrate."
+            ],
+            "source_id": "activitynet~v_0bosp4-pyTM",
+            "split": "val",
+            "split_type": "zeroshot",
+            "label": "1",
+            "query": "Sharpening knives: Then he takes a small stone from the flowing river and smashes it on another stone. He starts to crush the small stone to smaller pieces. He",
+            "choices": [
+              "cuts the center stone in half and blow it on to make it bigger.",
+              "grind it hard to make the pieces smaller.",
+              "eventually brings it back into view and adds it to the smaller ones to make a small triangular shaped piece.",
+              "starts to party with them and throw the pieces by hand while they celebrate."
+            ],
+            "gold": 1
+          },
+          "target": 1,
+          "arguments": [
+            [
+              "Sharpening knives: Then he takes a small stone from the flowing river and smashes it on another stone. He starts to crush the small stone to smaller pieces. He",
+              " cuts the center stone in half and blow it on to make it bigger."
+            ],
+            [
+              "Sharpening knives: Then he takes a small stone from the flowing river and smashes it on another stone. He starts to crush the small stone to smaller pieces. He",
+              " grind it hard to make the pieces smaller."
+            ],
+            [
+              "Sharpening knives: Then he takes a small stone from the flowing river and smashes it on another stone. He starts to crush the small stone to smaller pieces. He",
+              " eventually brings it back into view and adds it to the smaller ones to make a small triangular shaped piece."
+            ],
+            [
+              "Sharpening knives: Then he takes a small stone from the flowing river and smashes it on another stone. He starts to crush the small stone to smaller pieces. He",
+              " starts to party with them and throw the pieces by hand while they celebrate."
+            ]
+          ],
+          "resps": [
+            [
+              [
+                -5.0,
+                true
+              ]
+            ],
+            [
+              [
+                -5.0,
+                true
+              ]
+            ],
+            [
+              [
+                -1.0,
+                false
+              ]
+            ],
+            [
+              [
+                -1.0,
+                false
+              ]
+            ]
+          ],
+          "filtered_resps": [
+            [
+              -5.0,
+              true
+            ],
+            [
+              -5.0,
+              true
+            ],
+            [
+              -1.0,
+              false
+            ],
+            [
+              -1.0,
+              false
+            ]
+          ],
+          "filter": "none",
+          "metrics": [
+            "acc",
+            "acc_norm"
+          ],
+          "doc_hash": "582468b8b065e8950cbabd91aa14735d6c953b12ac8a01b5365d6c556d42f462",
+          "prompt_hash": "cc372cb637fd587aec1ed3b6ec8b1b3d5bb9b57be79ccdc94f5aae343c2e354e",
+          "target_hash": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+          "acc": 0.0,
+          "acc_norm": 0.0
+        }
+      ]
+    },
+    "config": {
+      "model": "LocalFastAPIGenerateLM",
+      "model_args": null,
+      "batch_size": 1,
+      "batch_sizes": [],
+      "device": null,
+      "use_cache": null,
+      "limit": 10,
+      "bootstrap_iters": 100000,
+      "gen_kwargs": null,
+      "random_seed": 0,
+      "numpy_seed": 1234,
+      "torch_seed": 1234,
+      "fewshot_seed": 1234
+    },
+    "git_hash": null,
+    "date": 1776592159.8517754,
+    "pretty_env_info": "PyTorch version: 2.11.0+cpu\nIs debug build: False\nCUDA used to build PyTorch: None\nROCM used to build PyTorch: N/A\n\nOS: Microsoft Windows 11 Enterprise (10.0.22631 64-bit)\nGCC version: Could not collect\nClang version: Could not collect\nCMake version: Could not collect\nLibc version: N/A\n\nPython version: 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)] (64-bit runtime)\nPython platform: Windows-11-10.0.22631-SP0\nIs CUDA available: False\nCUDA runtime version: No CUDA\nCUDA_MODULE_LOADING set to: N/A\nGPU models and configuration: No CUDA\nNvidia driver version: No CUDA\ncuDNN version: No CUDA\nIs XPU available: False\nHIP runtime version: N/A\nMIOpen runtime version: N/A\nIs XNNPACK available: True\nCaching allocator config: N/A\n\nCPU:\nName: Intel(R) Core(TM) Ultra 7 265U\nManufacturer: GenuineIntel\nFamily: 774\nArchitecture: 9\nProcessorType: 3\nDeviceID: CPU0\nCurrentClockSpeed: 2100\nMaxClockSpeed: 2100\nL2CacheSize: 10240\nL2CacheSpeed: None\nRevision: None\n\nVersions of relevant libraries:\n[pip3] numpy==2.4.4\n[pip3] torch==2.11.0\n[conda] Could not collect",
+    "transformers_version": "5.5.4",
+    "lm_eval_version": "0.4.11",
+    "upper_git_hash": null
+  },
+  "custom_task_results": {
+    "task_name": "custom_task",
+    "num_fewshot": 0,
+    "limit": 10,
+    "samples_evaluated": 10,
+    "accuracy": 0.5,
+    "samples": [
+      {
+        "prompt": "In grouped-query attention, what is the main systems-level benefit relative to standard multi-head attention during autoregressive decoding at long context lengths?\nA. It reduces KV-cache memory growth by sharing keys and values across groups of query heads.\nB. It removes the softmax normalization from attention, making decoding linear in vocabulary size.\nC. It guarantees identical perplexity because separate query projections preserve full expressivity.\nD. It makes rotary position embeddings unnecessary because grouping encodes relative distance implicitly.\nAnswer:",
+        "target": "A",
+        "prediction": "\nA. It reduces the number of queries that can be performed in a single query.\nAnswer:\nA. It reduces the number of queries that can",
+        "correct": true
+      },
+      {
+        "prompt": "Why can byte-level BPE outperform word-level tokenization on messy web text even when it produces longer sequences?\nA. It always yields fewer total merges, so the context window effectively becomes longer.\nB. It provides closed-vocabulary robustness to arbitrary strings and rare Unicode fragments without out-of-vocabulary failures.\nC. It ensures every token aligns with a morpheme, which improves semantic compositionality by construction.\nD. It makes perplexity directly comparable across languages because token boundaries are language independent.\nAnswer:",
+        "target": "B",
+        "prediction": "\nA. It provides a robust, robust, robust, robust, robust, robust, robust, robust, robust, robust, robust, robust, robust,",
+        "correct": false
+      },
+      {
+        "prompt": "For decoder-only language modeling, why is next-token cross-entropy computed on a one-position-shifted target sequence?\nA. Because each hidden state should predict the following token given the prefix, not reconstruct the token at the same position.\nB. Because the embedding matrix cannot be reused unless labels are shifted one position to the right.\nC. Because causal masking prevents the model from attending to the beginning-of-sequence token otherwise.\nD. Because label smoothing only applies to shifted targets in autoregressive transformers.\nAnswer:",
+        "target": "A",
+        "prediction": "\nA. Because the embedding matrix cannot be reused unless labels are shifted one position to the right.\nE. Because the embedding matrix cannot be reused",
+        "correct": true
+      },
+      {
+        "prompt": "Why can beam search underperform nucleus sampling on open-ended generation despite finding sequences with higher model probability?\nA. Beam search is stochastic and therefore less stable than top-p sampling in high-entropy contexts.\nB. Higher model probability is always less aligned with human preference in language generation.\nC. Beam search can over-optimize local likelihood and collapse onto generic continuations, while top-p preserves diversity across plausible continuations.\nD. Nucleus sampling performs implicit reranking with future lookahead that beam search lacks.\nAnswer:",
+        "target": "C",
+        "prediction": "\nA. Beam search is not a good fit for high-level languages.\nB. Higher model probability is always less aligned with human preference in language generation",
+        "correct": false
+      },
+      {
+        "prompt": "When comparing cosine similarity and raw dot product for dense retrieval embeddings, when will the rankings differ most meaningfully?\nA. When vector norms carry nuisance variation, causing high-magnitude embeddings to dominate dot-product scores.\nB. Only when the vectors are orthogonal, because cosine similarity becomes undefined in that case.\nC. Only when the embedding dimension is lower than the number of retrieved documents.\nD. When all vectors are already L2-normalized, because cosine no longer measures angular distance.\nAnswer:",
+        "target": "A",
+        "prediction": "\nA. When the vector norm is lower than the number of retrieved documents.\nAnswer:\nA. When the vector norm is lower than the number of",
+        "correct": true
+      },
+      {
+        "prompt": "Why does label smoothing often improve calibration while occasionally hurting peak classification accuracy?\nA. It increases the effective batch size, making optimization more stable but less expressive.\nB. It softens the one-hot target distribution, reducing overconfidence but also weakening the incentive to put full mass on the true class.\nC. It replaces cross-entropy with KL divergence to a uniform prior, which lowers gradient variance at the cost of separability.\nD. It regularizes only the output biases, which can improve confidence estimates without affecting decision boundaries.\nAnswer:",
+        "target": "B",
+        "prediction": "\nA. It reduces the number of errors in the final batch, which is more accurate than the original batch.\nE. It reduces the number of errors",
+        "correct": false
+      },
+      {
+        "prompt": "Why do learned absolute positional embeddings generally extrapolate worse than RoPE on contexts far beyond training length?\nA. Absolute embeddings are tied to specific seen indices, while RoPE preserves relative phase structure that tends to generalize more gracefully.\nB. RoPE removes the need for causal masking, which is the true source of long-context generalization.\nC. Absolute embeddings always collapse unseen positions to zero vectors, causing permutation invariance.\nD. RoPE compresses token embeddings before attention, so longer contexts fit in the same memory budget.\nAnswer:",
+        "target": "A",
+        "prediction": "\nA. Absolute embeddings are not always the same as a single set of values.\nAnswer:\nA. Absolute embeddings are not always",
+        "correct": true
+      },
+      {
+        "prompt": "Why is token-level perplexity not directly comparable across models using different tokenizers?\nA. Perplexity depends only on vocabulary size, and different tokenizers imply different vocabulary cardinalities.\nB. Different segmentation schemes change the underlying event space, so the average surprise is measured over different token units.\nC. Perplexity becomes invalid for subword models because tokens no longer correspond to full words.\nD. Different tokenizers induce different softmax temperatures during evaluation, which rescales the loss.\nAnswer:",
+        "target": "B",
+        "prediction": "\nA. Perplexity is a problem in the model.\nA. Perplexity is a problem in the model.\nA. Perplexity",
+        "correct": false
+      },
+      {
+        "prompt": "Why is temperature scaling applied to logits at decoding time rather than to hidden states inside the transformer?\nA. It changes the output distribution over next tokens without altering the learned contextual computation.\nB. It reduces KV-cache memory by shrinking hidden-state magnitudes during generation.\nC. It is mathematically identical to retraining the final layer with a different loss landscape.\nD. It preserves the argmax token for every nonzero temperature while only changing tail probabilities.\nAnswer:",
+        "target": "A",
+        "prediction": "\nA. It is mathematically identical to retraining the final layer with a different loss landscape.\nE. It is mathematically identical to retraining the",
+        "correct": true
+      },
+      {
+        "prompt": "In an InfoNCE-style contrastive objective for embeddings, what happens if nearly all in-batch negatives are trivially easy?\nA. The denominator becomes numerically unstable because easy negatives force logits toward infinity.\nB. The model is guaranteed to collapse to constant vectors because hard negatives are required for identifiability.\nC. The learned geometry may separate coarse semantics but fail at fine-grained retrieval because the training signal is too weak.\nD. The loss becomes equivalent to masked language modeling on the positive pairs.\nAnswer:",
+        "target": "C",
+        "prediction": " The loss becomes equivalent to masked language modeling on the negative pairs.\nE. The loss becomes equivalent to masked language modeling on the negative pairs.\nF.",
+        "correct": false
+      }
+    ]
+  }
+}

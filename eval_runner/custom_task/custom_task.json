@@ -1,0 +1,82 @@
+[
+  {
+    "prompt": "In grouped-query attention, what is the main systems-level benefit relative to standard multi-head attention during autoregressive decoding at long context lengths?\nA. It reduces KV-cache memory growth by sharing keys and values across groups of query heads.\nB. It removes the softmax normalization from attention, making decoding linear in vocabulary size.\nC. It guarantees identical perplexity because separate query projections preserve full expressivity.\nD. It makes rotary position embeddings unnecessary because grouping encodes relative distance implicitly.\nAnswer:",
+    "target": "A"
+  },
+  {
+    "prompt": "Why can byte-level BPE outperform word-level tokenization on messy web text even when it produces longer sequences?\nA. It always yields fewer total merges, so the context window effectively becomes longer.\nB. It provides closed-vocabulary robustness to arbitrary strings and rare Unicode fragments without out-of-vocabulary failures.\nC. It ensures every token aligns with a morpheme, which improves semantic compositionality by construction.\nD. It makes perplexity directly comparable across languages because token boundaries are language independent.\nAnswer:",
+    "target": "B"
+  },
+  {
+    "prompt": "For decoder-only language modeling, why is next-token cross-entropy computed on a one-position-shifted target sequence?\nA. Because each hidden state should predict the following token given the prefix, not reconstruct the token at the same position.\nB. Because the embedding matrix cannot be reused unless labels are shifted one position to the right.\nC. Because causal masking prevents the model from attending to the beginning-of-sequence token otherwise.\nD. Because label smoothing only applies to shifted targets in autoregressive transformers.\nAnswer:",
+    "target": "A"
+  },
+  {
+    "prompt": "Why can beam search underperform nucleus sampling on open-ended generation despite finding sequences with higher model probability?\nA. Beam search is stochastic and therefore less stable than top-p sampling in high-entropy contexts.\nB. Higher model probability is always less aligned with human preference in language generation.\nC. Beam search can over-optimize local likelihood and collapse onto generic continuations, while top-p preserves diversity across plausible continuations.\nD. Nucleus sampling performs implicit reranking with future lookahead that beam search lacks.\nAnswer:",
+    "target": "C"
+  },
+  {
+    "prompt": "When comparing cosine similarity and raw dot product for dense retrieval embeddings, when will the rankings differ most meaningfully?\nA. When vector norms carry nuisance variation, causing high-magnitude embeddings to dominate dot-product scores.\nB. Only when the vectors are orthogonal, because cosine similarity becomes undefined in that case.\nC. Only when the embedding dimension is lower than the number of retrieved documents.\nD. When all vectors are already L2-normalized, because cosine no longer measures angular distance.\nAnswer:",
+    "target": "A"
+  },
+  {
+    "prompt": "Why does label smoothing often improve calibration while occasionally hurting peak classification accuracy?\nA. It increases the effective batch size, making optimization more stable but less expressive.\nB. It softens the one-hot target distribution, reducing overconfidence but also weakening the incentive to put full mass on the true class.\nC. It replaces cross-entropy with KL divergence to a uniform prior, which lowers gradient variance at the cost of separability.\nD. It regularizes only the output biases, which can improve confidence estimates without affecting decision boundaries.\nAnswer:",
+    "target": "B"
+  },
+  {
+    "prompt": "Why do learned absolute positional embeddings generally extrapolate worse than RoPE on contexts far beyond training length?\nA. Absolute embeddings are tied to specific seen indices, while RoPE preserves relative phase structure that tends to generalize more gracefully.\nB. RoPE removes the need for causal masking, which is the true source of long-context generalization.\nC. Absolute embeddings always collapse unseen positions to zero vectors, causing permutation invariance.\nD. RoPE compresses token embeddings before attention, so longer contexts fit in the same memory budget.\nAnswer:",
+    "target": "A"
+  },
+  {
+    "prompt": "Why is token-level perplexity not directly comparable across models using different tokenizers?\nA. Perplexity depends only on vocabulary size, and different tokenizers imply different vocabulary cardinalities.\nB. Different segmentation schemes change the underlying event space, so the average surprise is measured over different token units.\nC. Perplexity becomes invalid for subword models because tokens no longer correspond to full words.\nD. Different tokenizers induce different softmax temperatures during evaluation, which rescales the loss.\nAnswer:",
+    "target": "B"
+  },
+  {
+    "prompt": "Why is temperature scaling applied to logits at decoding time rather than to hidden states inside the transformer?\nA. It changes the output distribution over next tokens without altering the learned contextual computation.\nB. It reduces KV-cache memory by shrinking hidden-state magnitudes during generation.\nC. It is mathematically identical to retraining the final layer with a different loss landscape.\nD. It preserves the argmax token for every nonzero temperature while only changing tail probabilities.\nAnswer:",
+    "target": "A"
+  },
+  {
+    "prompt": "In an InfoNCE-style contrastive objective for embeddings, what happens if nearly all in-batch negatives are trivially easy?\nA. The denominator becomes numerically unstable because easy negatives force logits toward infinity.\nB. The model is guaranteed to collapse to constant vectors because hard negatives are required for identifiability.\nC. The learned geometry may separate coarse semantics but fail at fine-grained retrieval because the training signal is too weak.\nD. The loss becomes equivalent to masked language modeling on the positive pairs.\nAnswer:",
+    "target": "C"
+  },
+  {
+    "prompt": "Why can very small top-p values sometimes produce less coherent text than greedy decoding, even though sampling is restricted to high-probability tokens?\nA. Because top-p sampling always uses a uniform distribution over the retained tokens.\nB. Because randomness can still push generation off the best long-horizon continuation, and those small local deviations compound across steps.\nC. Because greedy decoding uses beam-style future search while top-p does not.\nD. Because low top-p disables repetition penalties and stop conditions.\nAnswer:",
+    "target": "B"
+  },
+  {
+    "prompt": "A sentence embedding system mean-pools token representations but forgets to mask padding positions. What is the most realistic consequence?\nA. Padding has no effect because attention masking already forces padded token embeddings to exact zeros.\nB. The model becomes non-differentiable when the number of pads differs across examples.\nC. Padded positions can bias pooled representations if their hidden states are nonzero or interact with normalization statistics.\nD. The only issue is slower inference; the representation itself remains unchanged.\nAnswer:",
+    "target": "C"
+  },
+  {
+    "prompt": "What does FlashAttention improve if the computed attention function itself is unchanged?\nA. It reduces memory traffic and avoids materializing large intermediate attention matrices, improving efficiency while preserving exact attention.\nB. It approximates attention with low-rank projections chosen online to reduce FLOPs.\nC. It caches softmax outputs across transformer layers to reuse them in deeper blocks.\nD. It replaces causal masking with a block-sparse surrogate that is nearly exact in practice.\nAnswer:",
+    "target": "A"
+  },
+  {
+    "prompt": "Why might a model with lower next-token loss still perform worse on instruction-following benchmarks?\nA. Because instruction-following benchmarks mainly measure generation speed rather than correctness.\nB. Because lower loss implies overfitting to short sequences and therefore worse long-range attention.\nC. Because next-token prediction does not fully capture alignment with user intent, formatting constraints, or preference-sensitive behavior.\nD. Because instruction tuning necessarily increases perplexity by corrupting the base distribution.\nAnswer:",
+    "target": "C"
+  },
+  {
+    "prompt": "In a mixture-of-experts transformer, why is router imbalance harmful beyond raw hardware inefficiency?\nA. Because overloaded experts can dominate learning while underused experts remain undertrained, reducing effective model capacity.\nB. Because routing imbalance prevents gradients from flowing back into the shared attention layers.\nC. Because it makes the model equivalent to a recurrent network over experts.\nD. Because the router becomes deterministic and stops updating once one expert is preferred.\nAnswer:",
+    "target": "A"
+  },
+  {
+    "prompt": "Why does exposure bias matter even when teacher-forced validation loss is low?\nA. Because teacher forcing evaluates only encoder representations and ignores autoregressive decoding.\nB. Because at inference time the model conditions on its own previous predictions, so small mistakes can shift it off the training distribution.\nC. Because low validation loss implies the model has memorized position embeddings rather than token dependencies.\nD. Because teacher forcing never trains the end-of-sequence token, so stopping behavior is unsupervised.\nAnswer:",
+    "target": "B"
+  },
+  {
+    "prompt": "What is a realistic downside of applying a strong repetition penalty during decoding?\nA. It improves diversity without changing token probabilities, so there is no real downside.\nB. It only suppresses punctuation loops, leaving semantic repetition untouched.\nC. It can reduce looping but also penalize legitimate reuse of key entities or phrases, harming coherence and factual consistency.\nD. It makes decoding equivalent to contrastive search with a smaller beam width.\nAnswer:",
+    "target": "C"
+  },
+  {
+    "prompt": "Why can subword tokenization improve modeling of rare words compared with pure word-level vocabularies?\nA. It composes rare or unseen words from reusable pieces, improving coverage and parameter efficiency.\nB. It guarantees that every token corresponds to a semantic primitive rather than a surface fragment.\nC. It makes sequence length independent of morphology, which stabilizes transformer depth.\nD. It removes ambiguity because multiple segmentations are averaged at inference time.\nAnswer:",
+    "target": "A"
+  },
+  {
+    "prompt": "What is focal loss explicitly designed to do on class-imbalanced classification problems?\nA. Increase the logit margin of minority classes by hard-coding inverse-frequency priors into softmax.\nB. Down-weight easy, high-confidence examples so optimization focuses more on hard or misclassified cases.\nC. Replace multiclass classification with one-vs-rest objectives so classes can be thresholded independently.\nD. Remove the need for calibration because hard examples dominate the gradient signal.\nAnswer:",
+    "target": "B"
+  },
+  {
+    "prompt": "Why can batch normalization become problematic when batch sizes are very small or sequence statistics shift sharply between training and inference?\nA. Because the learned affine parameters are undefined unless the batch variance is exactly one.\nB. Because running statistics can become noisy or mismatched, making normalization unstable and less representative of inference-time activations.\nC. Because batch normalization disables residual connections when the mean activation drifts.\nD. Because transformer attention layers require layer normalization, making batch normalization mathematically invalid.\nAnswer:",
+    "target": "B"
+  }
+]

@@ -1,0 +1,5 @@
+# Guardrails Validation
+
+This module performs two lightweight safety and reliability checks against the local generation server. First, it runs a determinism test by sending the same prompt five times with `temperature=0`, `top_p=1`, and a fixed token limit. If every response matches exactly, the script prints `PASS`. If any run differs, it prints `FAIL` and shows a unified diff so the variation is easy to inspect. Second, it validates output shape. For `multiple_choice` tasks, the checker looks for a standalone answer label `A`, `B`, `C`, or `D` with a regex. For `json` tasks, it parses the text as JSON and optionally verifies required keys.
+
+Passing these checks does not guarantee full reproducibility. Nondeterminism can still appear at temperature zero because of server-side batching, floating-point tie breaks, GPU kernel differences, concurrency effects, model quantization, or implementation details in sampling and token post-processing. That means deterministic settings reduce randomness, but do not always eliminate variation across runs or hardware.

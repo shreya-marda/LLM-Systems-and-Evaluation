@@ -1,0 +1,22 @@
+task: custom_task
+dataset_path: json
+dataset_kwargs:
+  data_files:
+    test: eval_runner/custom_task/custom_task.json
+test_split: test
+output_type: multiple_choice
+doc_to_text: |
+  Question: {{question}}
+  A. {{choices[0]}}
+  B. {{choices[1]}}
+  C. {{choices[2]}}
+  D. {{choices[3]}}
+  Answer:
+doc_to_choice: "{{choices}}"
+doc_to_target: "{{answer}}"
+metric_list:
+  - metric: acc
+    aggregation: mean
+    higher_is_better: true
+metadata:
+  version: 1.0

@@ -1,0 +1,26 @@
+{
+  "dataset": "hellaswag",
+  "test_limit": 50,
+  "server_url": "http://localhost:8000/generate",
+  "baseline": {
+    "description": "zero-shot, temperature=0, greedy, max_tokens=6, stop sequences",
+    "total": 50,
+    "correct": 9,
+    "accuracy": 0.18,
+    "ci_95": {
+      "low": 0.09770192670234178,
+      "high": 0.30796053674300783
+    }
+  },
+  "optimized": {
+    "description": "3-shot dynamic few-shot + CoT + majority vote k=3, temperature=0.3, max_tokens=12, stop sequences",
+    "total": 50,
+    "correct": 11,
+    "accuracy": 0.22,
+    "ci_95": {
+      "low": 0.1275391597021442,
+      "high": 0.3524154958125367
+    }
+  },
+  "saved_examples_path": "C:\\Users\\z004z24p\\Desktop\\shreya\\Mercor\\results\\improve_examples.json"
+}

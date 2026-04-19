@@ -1,0 +1,422 @@
+[
+  {
+    "example_id": 2683,
+    "ctx": "One of the swimmers is underwater, trying to reach the ball. He throws the ball across to another swimmer who catches the ball. two swimmers",
+    "endings": [
+      "advance on the beach, trying to catch the balls.",
+      "are outside, working out as they of the group of swimmers.",
+      "are under water trying to reach the ball.",
+      "are together in a diving pool, putting on mask."
+    ],
+    "gold": "C",
+    "baseline_prediction": "A",
+    "baseline_correct": false,
+    "baseline_response": " A, B, C,",
+    "optimized_prediction": "C",
+    "optimized_correct": true,
+    "optimized_responses": [
+      " D",
+      " C",
+      " C"
+    ],
+    "few_shot_ids": [
+      2514,
+      200,
+      1516
+    ],
+    "flipped_to_correct": true,
+    "flipped_to_incorrect": false
+  },
+  {
+    "example_id": 2717,
+    "ctx": "A knife is put into a sharpener and moved back and forth and used on a circular sharpener. A pair of scissors is sharpened on the sharpener. the scissors",
+    "endings": [
+      "bend and glide over scales.",
+      "then cuts down the back of the hand of the person wiping and dressed in white suit.",
+      "cut a purple towel and a piece of paper.",
+      "are began cutting smooth lines into the discs of the discs as they are placed into the bowl, the edges."
+    ],
+    "gold": "C",
+    "baseline_prediction": "A",
+    "baseline_correct": false,
+    "baseline_response": " A knife is cut into a",
+    "optimized_prediction": "C",
+    "optimized_correct": true,
+    "optimized_responses": [
+      " B",
+      " C",
+      " C"
+    ],
+    "few_shot_ids": [
+      1875,
+      801,
+      1248
+    ],
+    "flipped_to_correct": true,
+    "flipped_to_incorrect": false
+  },
+  {
+    "example_id": 2735,
+    "ctx": "Several men are seen hosting a news segment that leads into clips of people playing a game together and arguing with one another. More shots of people playing are shown as well as people celebrating and walking away. more shots",
+    "endings": [
+      "are shown of people dancing with one another and once again the same shots are shown in slow motion.",
+      "of people playing are shown while more paper towels are passed all around.",
+      "are shown of the hosts speaking to one another and people hitting the ball and walking away.",
+      "are shown of people running around the land as well as running onto a field with their hands up."
+    ],
+    "gold": "C",
+    "baseline_prediction": "A",
+    "baseline_correct": false,
+    "baseline_response": " A, B, C,",
+    "optimized_prediction": "C",
+    "optimized_correct": true,
+    "optimized_responses": [
+      " C",
+      " D",
+      " C"
+    ],
+    "few_shot_ids": [
+      1277,
+      2518,
+      1494
+    ],
+    "flipped_to_correct": true,
+    "flipped_to_incorrect": false
+  },
+  {
+    "example_id": 2752,
+    "ctx": "A girl is shown washing and scrubbing her face several times while speaking into the camera. she",
+    "endings": [
+      "then rides a bike down the hill and gets her hair dried.",
+      "takes the lip stick out of her mouth while in the bathroom and begins brushing her teeth while still speaking into the camera.",
+      "gets her mascara out and then applies it to her face.",
+      "finishes by turning on the faucet and rinsing water through her face."
+    ],
+    "gold": "D",
+    "baseline_prediction": "A",
+    "baseline_correct": false,
+    "baseline_response": " A, B, C,",
+    "optimized_prediction": "D",
+    "optimized_correct": true,
+    "optimized_responses": [
+      " D",
+      " D",
+      " C"
+    ],
+    "few_shot_ids": [
+      529,
+      527,
+      2301
+    ],
+    "flipped_to_correct": true,
+    "flipped_to_incorrect": false
+  },
+  {
+    "example_id": 2757,
+    "ctx": "The man pretents to time himself and uses the screwdriver tool to pierce a hole in a full beer can that sprays some of its contents. the man",
+    "endings": [
+      "breaks open the beer can and throws it as far as he possibly can before a backup customer proceeds.",
+      "holds up the can with the hole facing upwards.",
+      "grabs a paper towel and wipes off a side yard using the strip to wipe down the frame.",
+      "removes the top seven screws of the can, lifts the lid, and takes a swig, exhales profusely."
+    ],
+    "gold": "B",
+    "baseline_prediction": "C",
+    "baseline_correct": false,
+    "baseline_response": " The man pretends to be",
+    "optimized_prediction": "B",
+    "optimized_correct": true,
+    "optimized_responses": [
+      " D",
+      " B",
+      " B"
+    ],
+    "few_shot_ids": [
+      186,
+      185,
+      876
+    ],
+    "flipped_to_correct": true,
+    "flipped_to_incorrect": false
+  },
+  {
+    "example_id": 2763,
+    "ctx": "Once she leaves, a black cat is shown and it begins to crawl over everything and then the lady comes and pets it. The female leaves and walks into a room and starts covering the room in wall paper. she",
+    "endings": [
+      "forgets the scissors and walks out to grab them and comes back to apply more paper on the wall.",
+      "then takes a pair of scissors and cut the wall paper and shreds it with a tool to shape it and then slips it onto the floor.",
+      "then cleans off the entire wall paper, and then rips it too hard while the cat is looking.",
+      "lays the wall paper down while she is still looking beautiful and then she is shown and she is getting into the shower being sprayed with a lemon."
+    ],
+    "gold": "A",
+    "baseline_prediction": null,
+    "baseline_correct": false,
+    "baseline_response": "",
+    "optimized_prediction": "A",
+    "optimized_correct": true,
+    "optimized_responses": [
+      " A",
+      " A",
+      " A"
+    ],
+    "few_shot_ids": [
+      386,
+      478,
+      385
+    ],
+    "flipped_to_correct": true,
+    "flipped_to_incorrect": false
+  },
+  {
+    "example_id": 2923,
+    "ctx": "The woman talks throughout the entire video as she's demonstrating her movements or pointing towards her finger motions. eventually the woman",
+    "endings": [
+      "stops talking and ends with a smile and the words \" howcast original \" appear on the white screen.",
+      "shows a square of paper and explains the process before showing the process once more.",
+      "gets off the mat and drops to the first mat and leans into the air before hitting it again with her hand.",
+      "is seen in front of a billiards table as the girl is sitting down in front of it sporting a black eye, an ear pan and a face mask."
+    ],
+    "gold": "A",
+    "baseline_prediction": null,
+    "baseline_correct": false,
+    "baseline_response": " \"I'm not sure what",
+    "optimized_prediction": "A",
+    "optimized_correct": true,
+    "optimized_responses": [
+      " B",
+      " A",
+      " A"
+    ],
+    "few_shot_ids": [
+      2364,
+      2363,
+      1846
+    ],
+    "flipped_to_correct": true,
+    "flipped_to_incorrect": false
+  },
+  {
+    "example_id": 3147,
+    "ctx": "A man is shown on a stage, playing drums. He beats the cymbals and drums very fast. he",
+    "endings": [
+      "then finishes setting up with his sticks.",
+      "uses his hands to motion the beats.",
+      "continues, making faces as he goes.",
+      "continues to drum as several smaller screens appear as they show how to play."
+    ],
+    "gold": "C",
+    "baseline_prediction": "A",
+    "baseline_correct": false,
+    "baseline_response": " A man is shown on a",
+    "optimized_prediction": "C",
+    "optimized_correct": true,
+    "optimized_responses": [
+      " B",
+      " C",
+      " C"
+    ],
+    "few_shot_ids": [
+      818,
+      819,
+      2324
+    ],
+    "flipped_to_correct": true,
+    "flipped_to_incorrect": false
+  },
+  {
+    "example_id": 2716,
+    "ctx": "A knife is put into a sharpener and moved back and forth and used on a circular sharpener. a pair of scissors",
+    "endings": [
+      "is sharpened on the sharpener.",
+      "is scraped away and then covered with a paper.",
+      "is used and used on trimming a cheek.",
+      "are placed into a glass of liquid and cut along skin."
+    ],
+    "gold": "A",
+    "baseline_prediction": "A",
+    "baseline_correct": true,
+    "baseline_response": " A knife is cut from a",
+    "optimized_prediction": "D",
+    "optimized_correct": false,
+    "optimized_responses": [
+      " D",
+      " D",
+      " C"
+    ],
+    "few_shot_ids": [
+      1875,
+      801,
+      186
+    ],
+    "flipped_to_correct": false,
+    "flipped_to_incorrect": true
+  },
+  {
+    "example_id": 2724,
+    "ctx": "A little girl sled in an inflatable boat hold to a string on front a man, suddenly she falls in a hollow. People carry sled boats and the little girl is in a sled boat. after a group of people",
+    "endings": [
+      "sled do down the hill until meet other persons.",
+      "sled sides a lake of water on horses next to a bridge of boats.",
+      "sled walking in a city square, between other people followed by all running around.",
+      "sled canoes together, then other people sled in the lake."
+    ],
+    "gold": "A",
+    "baseline_prediction": "A",
+    "baseline_correct": true,
+    "baseline_response": " A, B, C,",
+    "optimized_prediction": "B",
+    "optimized_correct": false,
+    "optimized_responses": [
+      " B",
+      " C",
+      " B"
+    ],
+    "few_shot_ids": [
+      106,
+      402,
+      2278
+    ],
+    "flipped_to_correct": false,
+    "flipped_to_incorrect": true
+  },
+  {
+    "example_id": 2953,
+    "ctx": "A man professionally paints several pieces of furniture using a spray painter in a paint shop while wearing overalls, a denim shirt and a paint mask. the man",
+    "endings": [
+      "begins by painting a wooden armchair metallic gray with a gold spray paint can.",
+      "then paints a floor with buckets of paint and he uses several buckets to paint the room.",
+      "gently glides the paint brush along more of the furniture making white lines on the fine rectangular piece of furniture.",
+      "drops the paint painting and talks to the camera for a while holding a paintbrush and showing off various brushes and sketches."
+    ],
+    "gold": "A",
+    "baseline_prediction": "A",
+    "baseline_correct": true,
+    "baseline_response": " A man is a man who",
+    "optimized_prediction": "C",
+    "optimized_correct": false,
+    "optimized_responses": [
+      " C",
+      " C",
+      " A"
+    ],
+    "few_shot_ids": [
+      1549,
+      887,
+      2324
+    ],
+    "flipped_to_correct": false,
+    "flipped_to_incorrect": true
+  },
+  {
+    "example_id": 2955,
+    "ctx": "The man begins by painting a wooden armchair metallic gray with a gold spray paint can. The man then paints a side table black with lights shining off of the black painted wood. the man",
+    "endings": [
+      "ends with painting a dresser drawer pink before the scene fades to a black marketing graphic.",
+      "necks the edge of the table to position the paint brush and brush on it.",
+      "turns on the vacuum cleaner to vacuum the hardwood floors of the living room.",
+      "proceeds to clean up the stained glass."
+    ],
+    "gold": "A",
+    "baseline_prediction": "A",
+    "baseline_correct": true,
+    "baseline_response": " The man is not a man",
+    "optimized_prediction": "C",
+    "optimized_correct": false,
+    "optimized_responses": [
+      " C",
+      " C",
+      " C"
+    ],
+    "few_shot_ids": [
+      1248,
+      1494,
+      2324
+    ],
+    "flipped_to_correct": false,
+    "flipped_to_incorrect": true
+  },
+  {
+    "example_id": 3146,
+    "ctx": "A man is shown on a stage, playing drums. he",
+    "endings": [
+      "beats the cymbals and drums very fast.",
+      "is displaying a keyboard and some instrument notes.",
+      "has several accorins, and even cymbals.",
+      "continues playing as bees gather around to watch."
+    ],
+    "gold": "A",
+    "baseline_prediction": "A",
+    "baseline_correct": true,
+    "baseline_response": " A man is shown on a",
+    "optimized_prediction": "B",
+    "optimized_correct": false,
+    "optimized_responses": [
+      " B",
+      " B",
+      " C"
+    ],
+    "few_shot_ids": [
+      818,
+      819,
+      149
+    ],
+    "flipped_to_correct": false,
+    "flipped_to_incorrect": true
+  },
+  {
+    "example_id": 3173,
+    "ctx": "A woman is on her hands and knees cutting grass with some scissors. the camera",
+    "endings": [
+      "pans out to give a full view of her cutting the grass.",
+      "then cuts to the other side of the lawn as children play in the water.",
+      "pans around to show the others performing sort of for the camera, including one woman standing upright in front of a bush.",
+      "turns back to the girl."
+    ],
+    "gold": "A",
+    "baseline_prediction": "A",
+    "baseline_correct": true,
+    "baseline_response": " A woman is on her hands",
+    "optimized_prediction": "C",
+    "optimized_correct": false,
+    "optimized_responses": [
+      " C",
+      " C",
+      " C"
+    ],
+    "few_shot_ids": [
+      854,
+      855,
+      2364
+    ],
+    "flipped_to_correct": false,
+    "flipped_to_incorrect": true
+  },
+  {
+    "example_id": 2646,
+    "ctx": ". a colorful intro with a lot of flashing words",
+    "endings": [
+      ", leads into a dirt track.",
+      "flash across the screen along with a logo and a banner with foreign language written on it.",
+      "appears giving a description of the video.",
+      "it says as follows."
+    ],
+    "gold": "B",
+    "baseline_prediction": null,
+    "baseline_correct": false,
+    "baseline_response": "",
+    "optimized_prediction": "C",
+    "optimized_correct": false,
+    "optimized_responses": [
+      " C",
+      " C",
+      " C"
+    ],
+    "few_shot_ids": [
+      586,
+      2625,
+      2324
+    ],
+    "flipped_to_correct": false,
+    "flipped_to_incorrect": false
+  }
+]
