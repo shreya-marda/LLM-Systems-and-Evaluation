@@ -17,7 +17,7 @@ guardrails, or improve layers.
 ## Project Structure
 
 ```
-Mercor/
+./
 ├── serve/
 │   ├── serve.py              # FastAPI + Transformers inference server (distilgpt2)
 │   └── client.py             # Python client: single, streaming, concurrent requests
